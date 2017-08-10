@@ -1,3 +1,14 @@
+# For bb+DM 
+
+# The first step is to skim the DelPanj samples into flat trees. 
+
+# This can be done using SkimTree.py
+
+#-------
+
+#Instructions below may be wrong/outdates. So refer to them at your own risk. 
+
+
 # MonoH
 
 #for combine
