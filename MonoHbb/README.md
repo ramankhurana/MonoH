@@ -8,8 +8,8 @@
   - The first step is to skim the DelPanj samples into flat trees. 
   - This can be done using SkimTree.py
   - change the content of "MZp1700Ma0300.txt" or make a new text file which will have the path to the rootfiles which you want to skim. 
-  - change the outfilename= '' as per your need, 
-  - You can run the code using python SkimTree.py
+  - change the outfilename=  as per your need, 
+  - You can run the code using "python SkimTree.py"
   - Once you have the code running locally, you can submit the batch jobs on lxplus or TIFR. 
 
 # Step 2: Signal Regions Selection 
