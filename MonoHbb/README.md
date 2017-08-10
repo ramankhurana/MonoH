@@ -1,17 +1,29 @@
 # For bb+DM 
 
+# Step 0: DelPanj
+  - Following instructions assume that you already have the output files from DelPanj analyzer to test the following steps. 
+  
 
-# Step 1
-
-## The first step is to skim the DelPanj samples into flat trees. 
-
-## This can be done using SkimTree.py
+# Step 1: Skimmer 
+  - The first step is to skim the DelPanj samples into flat trees. 
+  - This can be done using SkimTree.py
   - change the content of "MZp1700Ma0300.txt" or make a new text file which will have the path to the rootfiles which you want to skim. 
   - change the outfilename= '' as per your need, 
   - You can run the code using python SkimTree.py
   - Once you have the code running locally, you can submit the batch jobs on lxplus or TIFR. 
 
-# Se
+# Step 2: Signal Regions Selection 
+
+# Step 3: Signal efficiency extraction 
+
+# Step 4: Signal selection optimisation
+
+# Step 5: Control Region Selection 
+
+# Step 6: Stack plots for signal and control regions 
+
+# Step 7: Limit extraction using Higgs combination tool 
+
 
 #-------
 
