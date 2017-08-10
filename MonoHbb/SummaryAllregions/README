@@ -1,0 +1,4 @@
+   * This setup is to make the summary plot.
+   * plot has the data mc comparison for each of the control region showing the content of each background and other information. 
+   * This need the mlfit.root obtained by running the following command on one of the datacard. 
+     * combine -M MaxLikelihoodFit  bb/datacards_2HDM/ZpA0-1000-300/combined.txt  -t -1 --saveNormalizations --saveShapes --saveWithUncertainties
