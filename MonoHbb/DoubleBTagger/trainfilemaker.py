@@ -1,15 +1,4 @@
 #!/usr/bin/env python
-
-## original file: By Raman Khurana (derived from monoH skimmer) 
-
-## last edited: By Deepak Kumar (implementation for double b-tagger) 
-
-## picks the leading CA15 jet and save into a new short tree. 
-
-
-
-
-
 from ROOT import TFile, TTree, TH1F, TH1D, TH1, TCanvas, TChain,TGraphAsymmErrors, TMath, TH2D, TLorentzVector, AddressOf, gROOT, TNamed
 import ROOT as ROOT
 import os
@@ -150,40 +139,41 @@ def AnalyzeDataSet():
         CA15Puppi_ptPruned                   = ntuple.__getattr__('CA15Puppi_ptPruned') 
         CA15Puppi_etaPruned                  = ntuple.__getattr__('CA15Puppi_etaPruned')
 
-        
-        z_ratio[0]                = CA15Puppi_z_ratio[0]
-        SubJet_csv[0]             = CA15Puppi_SubJet_csv[0]
-        trackSipdSig_3[0]         = CA15Puppi_trackSipdSig_3[0]
-        trackSipdSig_2[0]         = CA15Puppi_trackSipdSig_2[0]
-        trackSipdSig_1[0]         = CA15Puppi_trackSipdSig_1[0]
-        trackSipdSig_0[0]         = CA15Puppi_trackSipdSig_0[0]
-        trackSipdSig_1_0[0]       = CA15Puppi_trackSipdSig_1_0[0]
-        trackSipdSig_0_0[0]       = CA15Puppi_trackSipdSig_0_0[0]
-        trackSipdSig_1_1[0]       = CA15Puppi_trackSipdSig_1_1[0] 
-        trackSipdSig_0_1[0]       = CA15Puppi_trackSipdSig_0_1[0] 
-        trackSip2dSigAboveCharm_0[0]  = CA15Puppi_trackSip2dSigAboveCharm_0[0]  
-        trackSip2dSigAboveBottom_0[0] = CA15Puppi_trackSip2dSigAboveBottom_0[0] 
-        trackSip2dSigAboveBottom_1[0] = CA15Puppi_trackSip2dSigAboveBottom_1[0] 
-        tau1_trackEtaRel_0[0]         = CA15Puppi_tau1_trackEtaRel_0[0]
-        tau1_trackEtaRel_1[0]         = CA15Puppi_tau1_trackEtaRel_1[0]
-        tau1_trackEtaRel_2[0]         = CA15Puppi_tau1_trackEtaRel_2[0]
-        tau0_trackEtaRel_0[0]         = CA15Puppi_tau0_trackEtaRel_0[0]
-        tau0_trackEtaRel_1[0]         = CA15Puppi_tau0_trackEtaRel_1[0]
-        tau0_trackEtaRel_2[0]         = CA15Puppi_tau0_trackEtaRel_2[0]
-        tau_vertexMass_0[0]           = CA15Puppi_tau_vertexMass_0[0]
-        tau_vertexEnergyRatio_0[0]    = CA15Puppi_tau_vertexEnergyRatio_0[0]
-        tau_vertexDeltaR_0[0]         = CA15Puppi_tau_vertexDeltaR_0[0] 
-        tau_flightDistance2dSig_0[0]  = CA15Puppi_tau_flightDistance2dSig_0[0]
-        tau_vertexMass_1[0]           = CA15Puppi_tau_vertexMass_1[0]
-        tau_vertexEnergyRatio_1[0]    = CA15Puppi_tau_vertexEnergyRatio_1[0]
-        tau_flightDistance2dSig_1[0]  = CA15Puppi_tau_flightDistance2dSig_1[0]
-        jetNTracks[0]                 = CA15Puppi_jetNTracks[0]
-        nSV[0]                        = CA15Puppi_nSV_[0]
-        massPruned[0]                 = CA15Puppi_massPruned[0] 
-        flavour[0]                    = CA15Puppi_flavour[0]  
-        nbHadrons[0]                  = CA15Puppi_nbHadrons[0] 
-        ptPruned[0]                   = CA15Puppi_ptPruned[0]
-        etaPruned[0]                  = CA15Puppi_etaPruned[0]
+        if len(CA15Puppi_ptPruned) > 0:
+
+            z_ratio[0]                = CA15Puppi_z_ratio[0]
+            SubJet_csv[0]             = CA15Puppi_SubJet_csv[0]
+            trackSipdSig_3[0]         = CA15Puppi_trackSipdSig_3[0]
+            trackSipdSig_2[0]         = CA15Puppi_trackSipdSig_2[0]
+            trackSipdSig_1[0]         = CA15Puppi_trackSipdSig_1[0]
+            trackSipdSig_0[0]         = CA15Puppi_trackSipdSig_0[0]
+            trackSipdSig_1_0[0]       = CA15Puppi_trackSipdSig_1_0[0]
+            trackSipdSig_0_0[0]       = CA15Puppi_trackSipdSig_0_0[0]
+            trackSipdSig_1_1[0]       = CA15Puppi_trackSipdSig_1_1[0] 
+            trackSipdSig_0_1[0]       = CA15Puppi_trackSipdSig_0_1[0] 
+            trackSip2dSigAboveCharm_0[0]  = CA15Puppi_trackSip2dSigAboveCharm_0[0]  
+            trackSip2dSigAboveBottom_0[0] = CA15Puppi_trackSip2dSigAboveBottom_0[0] 
+            trackSip2dSigAboveBottom_1[0] = CA15Puppi_trackSip2dSigAboveBottom_1[0] 
+            tau1_trackEtaRel_0[0]         = CA15Puppi_tau1_trackEtaRel_0[0]
+            tau1_trackEtaRel_1[0]         = CA15Puppi_tau1_trackEtaRel_1[0]
+            tau1_trackEtaRel_2[0]         = CA15Puppi_tau1_trackEtaRel_2[0]
+            tau0_trackEtaRel_0[0]         = CA15Puppi_tau0_trackEtaRel_0[0]
+            tau0_trackEtaRel_1[0]         = CA15Puppi_tau0_trackEtaRel_1[0]
+            tau0_trackEtaRel_2[0]         = CA15Puppi_tau0_trackEtaRel_2[0]
+            tau_vertexMass_0[0]           = CA15Puppi_tau_vertexMass_0[0]
+            tau_vertexEnergyRatio_0[0]    = CA15Puppi_tau_vertexEnergyRatio_0[0]
+            tau_vertexDeltaR_0[0]         = CA15Puppi_tau_vertexDeltaR_0[0] 
+            tau_flightDistance2dSig_0[0]  = CA15Puppi_tau_flightDistance2dSig_0[0]
+            tau_vertexMass_1[0]           = CA15Puppi_tau_vertexMass_1[0]
+            tau_vertexEnergyRatio_1[0]    = CA15Puppi_tau_vertexEnergyRatio_1[0]
+            tau_flightDistance2dSig_1[0]  = CA15Puppi_tau_flightDistance2dSig_1[0]
+            jetNTracks[0]                 = CA15Puppi_jetNTracks[0]
+            nSV[0]                        = CA15Puppi_nSV_[0]
+            massPruned[0]                 = CA15Puppi_massPruned[0] 
+            flavour[0]                    = CA15Puppi_flavour[0]  
+            nbHadrons[0]                  = CA15Puppi_nbHadrons[0] 
+            ptPruned[0]                   = CA15Puppi_ptPruned[0]
+            etaPruned[0]                  = CA15Puppi_etaPruned[0]
 
 
         outTree.Fill()
