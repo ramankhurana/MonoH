@@ -55,6 +55,8 @@ def AnalyzeDataSet():
     ptPruned                      = array( 'f', [ 0 ] )
     etaPruned                     = array( 'f', [ 0 ] )
 
+    nEle                          = array( 'f', [ 0 ] )
+
 
 
     outTree.Branch( 'z_ratio', z_ratio , 'z_ratio/F')
@@ -91,6 +93,8 @@ def AnalyzeDataSet():
     outTree.Branch( 'ptPruned',ptPruned,'ptPruned/F')
     outTree.Branch( 'etaPruned',etaPruned,'etaPruned/F')
 
+    outTree.Branch( 'nEle',nEle,'nEle/F')
+
     if len(sys.argv)>2:
         NEntries=int(sys.argv[2])
         print "WARNING: Running in TEST MODE"
@@ -108,39 +112,50 @@ def AnalyzeDataSet():
         CA15Puppi_z_ratio                    = ntuple.__getattr__('CA15Puppi_z_ratio')
         CA15Puppi_SubJet_csv                 = ntuple.__getattr__('CA15Puppi_SubJet_csv')
         CA15Puppi_trackSipdSig_3             = ntuple.__getattr__('CA15Puppi_trackSipdSig_3')
-        CA15Puppi_trackSipdSig_2             = ntuple.__getattr__('CA15Puppi_trackSipdSig_2') 
-        CA15Puppi_trackSipdSig_1             = ntuple.__getattr__('CA15Puppi_trackSipdSig_1') 
-        CA15Puppi_trackSipdSig_0             = ntuple.__getattr__('CA15Puppi_trackSipdSig_0') 
-        CA15Puppi_trackSipdSig_1_0           = ntuple.__getattr__('CA15Puppi_trackSipdSig_1_0') 
+        CA15Puppi_trackSipdSig_2             = ntuple.__getattr__('CA15Puppi_trackSipdSig_2')
+        CA15Puppi_trackSipdSig_1             = ntuple.__getattr__('CA15Puppi_trackSipdSig_1')
+        CA15Puppi_trackSipdSig_0             = ntuple.__getattr__('CA15Puppi_trackSipdSig_0')
+        CA15Puppi_trackSipdSig_1_0           = ntuple.__getattr__('CA15Puppi_trackSipdSig_1_0')
         CA15Puppi_trackSipdSig_0_0           = ntuple.__getattr__('CA15Puppi_trackSipdSig_0_0')
-        CA15Puppi_trackSipdSig_1_1           = ntuple.__getattr__('CA15Puppi_trackSipdSig_1_1') 
-        CA15Puppi_trackSipdSig_0_1           = ntuple.__getattr__('CA15Puppi_trackSipdSig_0_1') 
-        CA15Puppi_trackSip2dSigAboveCharm_0  = ntuple.__getattr__('CA15Puppi_trackSip2dSigAboveCharm_0')  
-        CA15Puppi_trackSip2dSigAboveBottom_0 = ntuple.__getattr__('CA15Puppi_trackSip2dSigAboveBottom_0') 
-        CA15Puppi_trackSip2dSigAboveBottom_1 = ntuple.__getattr__('CA15Puppi_trackSip2dSigAboveBottom_1') 
-        CA15Puppi_tau1_trackEtaRel_0         = ntuple.__getattr__('CA15Puppi_tau1_trackEtaRel_0') 
-        CA15Puppi_tau1_trackEtaRel_1         = ntuple.__getattr__('CA15Puppi_tau1_trackEtaRel_1') 
-        CA15Puppi_tau1_trackEtaRel_2         = ntuple.__getattr__('CA15Puppi_tau1_trackEtaRel_2') 
-        CA15Puppi_tau0_trackEtaRel_0         = ntuple.__getattr__('CA15Puppi_tau0_trackEtaRel_0')  
-        CA15Puppi_tau0_trackEtaRel_1         = ntuple.__getattr__('CA15Puppi_tau0_trackEtaRel_1') 
-        CA15Puppi_tau0_trackEtaRel_2         = ntuple.__getattr__('CA15Puppi_tau0_trackEtaRel_2') 
-        CA15Puppi_tau_vertexMass_0           = ntuple.__getattr__('CA15Puppi_tau_vertexMass_0')  
-        CA15Puppi_tau_vertexEnergyRatio_0    = ntuple.__getattr__('CA15Puppi_tau_vertexEnergyRatio_0') 
-        CA15Puppi_tau_vertexDeltaR_0         = ntuple.__getattr__('CA15Puppi_tau_vertexDeltaR_0')   
-        CA15Puppi_tau_flightDistance2dSig_0  = ntuple.__getattr__('CA15Puppi_tau_flightDistance2dSig_0') 
-        CA15Puppi_tau_vertexMass_1           = ntuple.__getattr__('CA15Puppi_tau_vertexMass_1')      
-        CA15Puppi_tau_vertexEnergyRatio_1    = ntuple.__getattr__('CA15Puppi_tau_vertexEnergyRatio_1')  
-        CA15Puppi_tau_flightDistance2dSig_1  = ntuple.__getattr__('CA15Puppi_tau_flightDistance2dSig_1') 
-        CA15Puppi_jetNTracks                 = ntuple.__getattr__('CA15Puppi_jetNTracks')  
-        CA15Puppi_nSV_                        = ntuple.__getattr__('CA15Puppi_nSV_')        
-        CA15Puppi_massPruned                 = ntuple.__getattr__('CA15Puppi_massPruned')   
-        CA15Puppi_flavour                    = ntuple.__getattr__('CA15Puppi_flavour')    
-        CA15Puppi_nbHadrons                  = ntuple.__getattr__('CA15Puppi_nbHadrons') 
-        CA15Puppi_ptPruned                   = ntuple.__getattr__('CA15Puppi_ptPruned') 
+        CA15Puppi_trackSipdSig_1_1           = ntuple.__getattr__('CA15Puppi_trackSipdSig_1_1')
+        CA15Puppi_trackSipdSig_0_1           = ntuple.__getattr__('CA15Puppi_trackSipdSig_0_1')
+        CA15Puppi_trackSip2dSigAboveCharm_0  = ntuple.__getattr__('CA15Puppi_trackSip2dSigAboveCharm_0')
+        CA15Puppi_trackSip2dSigAboveBottom_0 = ntuple.__getattr__('CA15Puppi_trackSip2dSigAboveBottom_0')
+        CA15Puppi_trackSip2dSigAboveBottom_1 = ntuple.__getattr__('CA15Puppi_trackSip2dSigAboveBottom_1')
+        CA15Puppi_tau1_trackEtaRel_0         = ntuple.__getattr__('CA15Puppi_tau1_trackEtaRel_0')
+        CA15Puppi_tau1_trackEtaRel_1         = ntuple.__getattr__('CA15Puppi_tau1_trackEtaRel_1')
+        CA15Puppi_tau1_trackEtaRel_2         = ntuple.__getattr__('CA15Puppi_tau1_trackEtaRel_2')
+        CA15Puppi_tau0_trackEtaRel_0         = ntuple.__getattr__('CA15Puppi_tau0_trackEtaRel_0')
+        CA15Puppi_tau0_trackEtaRel_1         = ntuple.__getattr__('CA15Puppi_tau0_trackEtaRel_1')
+        CA15Puppi_tau0_trackEtaRel_2         = ntuple.__getattr__('CA15Puppi_tau0_trackEtaRel_2')
+        CA15Puppi_tau_vertexMass_0           = ntuple.__getattr__('CA15Puppi_tau_vertexMass_0')
+        CA15Puppi_tau_vertexEnergyRatio_0    = ntuple.__getattr__('CA15Puppi_tau_vertexEnergyRatio_0')
+        CA15Puppi_tau_vertexDeltaR_0         = ntuple.__getattr__('CA15Puppi_tau_vertexDeltaR_0')
+        CA15Puppi_tau_flightDistance2dSig_0  = ntuple.__getattr__('CA15Puppi_tau_flightDistance2dSig_0')
+        CA15Puppi_tau_vertexMass_1           = ntuple.__getattr__('CA15Puppi_tau_vertexMass_1')
+        CA15Puppi_tau_vertexEnergyRatio_1    = ntuple.__getattr__('CA15Puppi_tau_vertexEnergyRatio_1')
+        CA15Puppi_tau_flightDistance2dSig_1  = ntuple.__getattr__('CA15Puppi_tau_flightDistance2dSig_1')
+        CA15Puppi_jetNTracks                 = ntuple.__getattr__('CA15Puppi_jetNTracks')
+        CA15Puppi_nSV_                        = ntuple.__getattr__('CA15Puppi_nSV_')
+        CA15Puppi_massPruned                 = ntuple.__getattr__('CA15Puppi_massPruned')
+        CA15Puppi_flavour                    = ntuple.__getattr__('CA15Puppi_flavour')
+        CA15Puppi_nbHadrons                  = ntuple.__getattr__('CA15Puppi_nbHadrons')
+        CA15Puppi_ptPruned                   = ntuple.__getattr__('CA15Puppi_ptPruned')
         CA15Puppi_etaPruned                  = ntuple.__getattr__('CA15Puppi_etaPruned')
 
-        if len(CA15Puppi_ptPruned) > 0:
 
+        #Other variables
+        eleIsPassLoose             = ntuple.__getattr__('eleIsPassLoose')
+        nElectron                  = ntuple.__getattr__('nEle')
+        eleP4                      = ntuple.__getattr__('eleP4')
+
+        myEles=[]
+        for iele in range(nElectron):
+            if (eleP4[iele].Pt() > 10. ) & (abs(eleP4[iele].Eta()) <2.5) & (bool(eleIsPassLoose[iele]) == True) :
+                myEles.append(iele)
+
+
+        if len(CA15Puppi_ptPruned) > 0:
             z_ratio[0]                = CA15Puppi_z_ratio[0]
             SubJet_csv[0]             = CA15Puppi_SubJet_csv[0]
             trackSipdSig_3[0]         = CA15Puppi_trackSipdSig_3[0]
@@ -149,11 +164,11 @@ def AnalyzeDataSet():
             trackSipdSig_0[0]         = CA15Puppi_trackSipdSig_0[0]
             trackSipdSig_1_0[0]       = CA15Puppi_trackSipdSig_1_0[0]
             trackSipdSig_0_0[0]       = CA15Puppi_trackSipdSig_0_0[0]
-            trackSipdSig_1_1[0]       = CA15Puppi_trackSipdSig_1_1[0] 
-            trackSipdSig_0_1[0]       = CA15Puppi_trackSipdSig_0_1[0] 
-            trackSip2dSigAboveCharm_0[0]  = CA15Puppi_trackSip2dSigAboveCharm_0[0]  
-            trackSip2dSigAboveBottom_0[0] = CA15Puppi_trackSip2dSigAboveBottom_0[0] 
-            trackSip2dSigAboveBottom_1[0] = CA15Puppi_trackSip2dSigAboveBottom_1[0] 
+            trackSipdSig_1_1[0]       = CA15Puppi_trackSipdSig_1_1[0]
+            trackSipdSig_0_1[0]       = CA15Puppi_trackSipdSig_0_1[0]
+            trackSip2dSigAboveCharm_0[0]  = CA15Puppi_trackSip2dSigAboveCharm_0[0]
+            trackSip2dSigAboveBottom_0[0] = CA15Puppi_trackSip2dSigAboveBottom_0[0]
+            trackSip2dSigAboveBottom_1[0] = CA15Puppi_trackSip2dSigAboveBottom_1[0]
             tau1_trackEtaRel_0[0]         = CA15Puppi_tau1_trackEtaRel_0[0]
             tau1_trackEtaRel_1[0]         = CA15Puppi_tau1_trackEtaRel_1[0]
             tau1_trackEtaRel_2[0]         = CA15Puppi_tau1_trackEtaRel_2[0]
@@ -162,24 +177,26 @@ def AnalyzeDataSet():
             tau0_trackEtaRel_2[0]         = CA15Puppi_tau0_trackEtaRel_2[0]
             tau_vertexMass_0[0]           = CA15Puppi_tau_vertexMass_0[0]
             tau_vertexEnergyRatio_0[0]    = CA15Puppi_tau_vertexEnergyRatio_0[0]
-            tau_vertexDeltaR_0[0]         = CA15Puppi_tau_vertexDeltaR_0[0] 
+            tau_vertexDeltaR_0[0]         = CA15Puppi_tau_vertexDeltaR_0[0]
             tau_flightDistance2dSig_0[0]  = CA15Puppi_tau_flightDistance2dSig_0[0]
             tau_vertexMass_1[0]           = CA15Puppi_tau_vertexMass_1[0]
             tau_vertexEnergyRatio_1[0]    = CA15Puppi_tau_vertexEnergyRatio_1[0]
             tau_flightDistance2dSig_1[0]  = CA15Puppi_tau_flightDistance2dSig_1[0]
             jetNTracks[0]                 = CA15Puppi_jetNTracks[0]
             nSV[0]                        = CA15Puppi_nSV_[0]
-            massPruned[0]                 = CA15Puppi_massPruned[0] 
-            flavour[0]                    = CA15Puppi_flavour[0]  
-            nbHadrons[0]                  = CA15Puppi_nbHadrons[0] 
+            massPruned[0]                 = CA15Puppi_massPruned[0]
+            flavour[0]                    = CA15Puppi_flavour[0]
+            nbHadrons[0]                  = CA15Puppi_nbHadrons[0]
             ptPruned[0]                   = CA15Puppi_ptPruned[0]
             etaPruned[0]                  = CA15Puppi_etaPruned[0]
+            #other variables
+            nEle[0] = len(myEles)
 
 
         outTree.Fill()
 
-    outfile.Write()       
-        
+    outfile.Write()
+
 
 
 if __name__ == "__main__":
