@@ -8,11 +8,13 @@ import math
 import numpy as numpy_
 
 ROOT.gROOT.LoadMacro("Loader.h+")
-outfilename= "Signal_train.root"
+#outfilename= "bkg_QCD500-700_train.root"
+outfilename= "signal_ZpBaryonic_MZp-1000_MChi-1_train.root"
 
 ntuple = TChain("tree/treeMaker")
 ntuple.Add(sys.argv[1])
 
+reader = ROOT.TMVA.Reader()
 
 def AnalyzeDataSet():
     NEntries = ntuple.GetEntries()
@@ -21,43 +23,52 @@ def AnalyzeDataSet():
 
 
 
-    z_ratio                       = array( 'f', [ 0 ] )
-    SubJet_csv                    = array( 'f', [ 0 ] )
-    trackSipdSig_3                = array( 'f', [ 0 ] )
-    trackSipdSig_2                = array( 'f', [ 0 ] )
-    trackSipdSig_1                = array( 'f', [ 0 ] )
-    trackSipdSig_0                = array( 'f', [ 0 ] )
-    trackSipdSig_1_0              = array( 'f', [ 0 ] )
-    trackSipdSig_0_0              = array( 'f', [ 0 ] )
-    trackSipdSig_1_1              = array( 'f', [ 0 ] )
-    trackSipdSig_0_1              = array( 'f', [ 0 ] )
-    trackSip2dSigAboveCharm_0     = array( 'f', [ 0 ] )
-    trackSip2dSigAboveBottom_0    = array( 'f', [ 0 ] )
-    trackSip2dSigAboveBottom_1    = array( 'f', [ 0 ] )
-    tau1_trackEtaRel_0            = array( 'f', [ 0 ] )
-    tau1_trackEtaRel_1            = array( 'f', [ 0 ] )
-    tau1_trackEtaRel_2            = array( 'f', [ 0 ] )
-    tau0_trackEtaRel_0            = array( 'f', [ 0 ] )
-    tau0_trackEtaRel_1            = array( 'f', [ 0 ] )
-    tau0_trackEtaRel_2            = array( 'f', [ 0 ] )
-    tau_vertexMass_0              = array( 'f', [ 0 ] )
-    tau_vertexEnergyRatio_0       = array( 'f', [ 0 ] )
-    tau_vertexDeltaR_0            = array( 'f', [ 0 ] )
-    tau_flightDistance2dSig_0     = array( 'f', [ 0 ] )
-    tau_vertexMass_1              = array( 'f', [ 0 ] )
-    tau_vertexEnergyRatio_1       = array( 'f', [ 0 ] )
-    tau_flightDistance2dSig_1     = array( 'f', [ 0 ] )
-    jetNTracks                    = array( 'f', [ 0 ] )
-    nSV                           = array( 'f', [ 0 ] )
-    massPruned                    = array( 'f', [ 0 ] )
-    flavour                       = array( 'f', [ 0 ] )
-    nbHadrons                     = array( 'f', [ 0 ] )
-    ptPruned                      = array( 'f', [ 0 ] )
-    etaPruned                     = array( 'f', [ 0 ] )
+    z_ratio                       = array( 'f', [ 0. ] )
+    SubJet_csv                    = array( 'f', [ 0. ] )
+    trackSipdSig_3                = array( 'f', [ 0. ] )
+    trackSipdSig_2                = array( 'f', [ 0. ] )
+    trackSipdSig_1                = array( 'f', [ 0. ] )
+    trackSipdSig_0                = array( 'f', [ 0. ] )
+    trackSipdSig_1_0              = array( 'f', [ 0. ] )
+    trackSipdSig_0_0              = array( 'f', [ 0. ] )
+    trackSipdSig_1_1              = array( 'f', [ 0. ] )
+    trackSipdSig_0_1              = array( 'f', [ 0. ] )
+    trackSip2dSigAboveCharm_0     = array( 'f', [ 0. ] )
+    trackSip2dSigAboveBottom_0    = array( 'f', [ 0. ] )
+    trackSip2dSigAboveBottom_1    = array( 'f', [ 0. ] )
+    tau1_trackEtaRel_0            = array( 'f', [ 0. ] )
+    tau1_trackEtaRel_1            = array( 'f', [ 0. ] )
+    tau1_trackEtaRel_2            = array( 'f', [ 0. ] )
+    tau0_trackEtaRel_0            = array( 'f', [ 0. ] )
+    tau0_trackEtaRel_1            = array( 'f', [ 0. ] )
+    tau0_trackEtaRel_2            = array( 'f', [ 0. ] )
+    tau_vertexMass_0              = array( 'f', [ 0. ] )
+    tau_vertexEnergyRatio_0       = array( 'f', [ 0. ] )
+    tau_vertexDeltaR_0            = array( 'f', [ 0. ] )
+    tau_flightDistance2dSig_0     = array( 'f', [ 0. ] )
+    tau_vertexMass_1              = array( 'f', [ 0. ] )
+    tau_vertexEnergyRatio_1       = array( 'f', [ 0. ] )
+    tau_flightDistance2dSig_1     = array( 'f', [ 0. ] )
+    jetNTracks                    = array( 'f', [ 0. ] )
+    nSV                           = array( 'f', [ 0. ] )
+    massPruned                    = array( 'f', [ 0. ] )
+    flavour                       = array( 'f', [ 0. ] )
+    nbHadrons                     = array( 'f', [ 0. ] )
+    ptPruned                      = array( 'f', [ 0. ] )
+    etaPruned                     = array( 'f', [ 0. ] )
+    weight                        = array( 'f', [ 0. ] )
 
-    nEle                          = array( 'f', [ 0 ] )
+    var_list_float=[SubJet_csv,flavour,nbHadrons,z_ratio,trackSipdSig_3,trackSipdSig_2,trackSipdSig_1,trackSipdSig_0,trackSipdSig_1_0,trackSipdSig_0_0,trackSipdSig_1_1,trackSipdSig_0_1,trackSip2dSigAboveCharm_0,trackSip2dSigAboveBottom_0,trackSip2dSigAboveBottom_1,tau0_trackEtaRel_0,tau0_trackEtaRel_1,tau0_trackEtaRel_2,tau1_trackEtaRel_0,tau1_trackEtaRel_1,tau1_trackEtaRel_2,tau_vertexMass_0,tau_vertexEnergyRatio_0,tau_vertexDeltaR_0,tau_flightDistance2dSig_0,tau_vertexMass_1,tau_vertexEnergyRatio_1,tau_flightDistance2dSig_1,jetNTracks,nSV]
+
+    var_list_str=['SubJet_csv','flavour','nbHadrons','z_ratio','trackSipdSig_3','trackSipdSig_2','trackSipdSig_1','trackSipdSig_0','trackSipdSig_1_0','trackSipdSig_0_0','trackSipdSig_1_1','trackSipdSig_0_1','trackSip2dSigAboveCharm_0','trackSip2dSigAboveBottom_0','trackSip2dSigAboveBottom_1','tau0_trackEtaRel_0','tau0_trackEtaRel_1','tau0_trackEtaRel_2','tau1_trackEtaRel_0','tau1_trackEtaRel_1','tau1_trackEtaRel_2','tau_vertexMass_0','tau_vertexEnergyRatio_0','tau_vertexDeltaR_0','tau_flightDistance2dSig_0','tau_vertexMass_1','tau_vertexEnergyRatio_1','tau_flightDistance2dSig_1','jetNTracks','nSV']
 
 
+    bdt_out=[]
+    for i in range(len(var_list_str)):
+        reader.AddVariable(var_list_str[i],var_list_float[i])
+
+
+    reader.BookMVA("BDT", "bdt_sklearn_to_tmva_.xml")
 
     outTree.Branch( 'z_ratio', z_ratio , 'z_ratio/F')
     outTree.Branch( 'SubJet_csv',SubJet_csv,'SubJet_csv/F')
@@ -92,8 +103,7 @@ def AnalyzeDataSet():
     outTree.Branch( 'nbHadrons',nbHadrons,'nbHadrons/F')
     outTree.Branch( 'ptPruned',ptPruned,'ptPruned/F')
     outTree.Branch( 'etaPruned',etaPruned,'etaPruned/F')
-
-    outTree.Branch( 'nEle',nEle,'nEle/F')
+    outTree.Branch( 'weight',weight,'weight/F')
 
     if len(sys.argv)>2:
         NEntries=int(sys.argv[2])
@@ -144,18 +154,8 @@ def AnalyzeDataSet():
         CA15Puppi_etaPruned                  = ntuple.__getattr__('CA15Puppi_etaPruned')
 
 
-        #Other variables
-        eleIsPassLoose             = ntuple.__getattr__('eleIsPassLoose')
-        nElectron                  = ntuple.__getattr__('nEle')
-        eleP4                      = ntuple.__getattr__('eleP4')
+        if len(CA15Puppi_ptPruned) > 0 :
 
-        myEles=[]
-        for iele in range(nElectron):
-            if (eleP4[iele].Pt() > 10. ) & (abs(eleP4[iele].Eta()) <2.5) & (bool(eleIsPassLoose[iele]) == True) :
-                myEles.append(iele)
-
-
-        if len(CA15Puppi_ptPruned) > 0:
             z_ratio[0]                = CA15Puppi_z_ratio[0]
             SubJet_csv[0]             = CA15Puppi_SubJet_csv[0]
             trackSipdSig_3[0]         = CA15Puppi_trackSipdSig_3[0]
@@ -189,9 +189,10 @@ def AnalyzeDataSet():
             nbHadrons[0]                  = CA15Puppi_nbHadrons[0]
             ptPruned[0]                   = CA15Puppi_ptPruned[0]
             etaPruned[0]                  = CA15Puppi_etaPruned[0]
-            #other variables
-            nEle[0] = len(myEles)
 
+            bdtOutput = reader.EvaluateMVA("BDT")
+            print bdtOutput
+            weight=bdtOutput
 
         outTree.Fill()
 
