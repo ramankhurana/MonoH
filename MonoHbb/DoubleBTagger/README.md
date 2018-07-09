@@ -3,7 +3,7 @@
  
   ###  Deep Jet ( training and evaluation of deep neural networks for Jet identification)
   
-  ##Setup python packages (CERN)
+  ## Setup python packages (CERN)
   
 It is essential to perform all these steps on lxplus7. Simple ssh to 'lxplus7' instead of 'lxplus'
 
@@ -38,7 +38,7 @@ cd DeepJetCore/environment
 
 For enabling gpu support add 'gpu' as an additional option to the last command. This will take a while. Please log out and in again once the installation is finised.
 
-##Compiling DeepJetCore
+## Compiling DeepJetCore
 When the installation was successful, the DeepJetCore tools need to be compiled.
 
 ```cd DeepJetCore
@@ -47,7 +47,7 @@ cd compiled
 make -j4
 ```
 
-###Usage
+### Usage
 
 After logging in, please source the right environment (please cd to the directory first!):
 ```cd <your working dir>/DeepJet
@@ -55,7 +55,7 @@ source lxplus_env.sh / gpu_env.sh
 ```
 I used ```source lxplus_env.sh```
 
-##The preparation for the training consists of the following steps
+## The preparation for the training consists of the following steps
 
 - define the data structure for the training (example in modules/TrainData_template.py)
   for simplicity, copy the file to TrainData_template.py and adjust it. 
@@ -89,13 +89,13 @@ I used ```source lxplus_env.sh```
   
   This step can take a while.
   
-  ##Training
+  ## Training
   
 the training is launched in the following way:
 ```
 python train_template.py /path/to/the/output/of/convert/dataCollection.dc <output dir of your choice>
 ```
-##Evaluation
+## Evaluation
 
 After the training has finished, the performance can be evaluated.
 The evaluation consists of a few steps:
