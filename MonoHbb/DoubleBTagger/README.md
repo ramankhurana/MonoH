@@ -1,7 +1,7 @@
  ###  BDT Training
  (will update soon)
  
-  ###  Deep Jet ( training and evaluation of deep neural networks for Jet identification)
+  #  Deep Jet ( training and evaluation of deep neural networks for Jet identification)
   
   ## Setup python packages (CERN)
   
