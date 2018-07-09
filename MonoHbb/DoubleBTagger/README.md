@@ -17,7 +17,8 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 Please follow the installation process. If you don't know what an option does, please answer 'yes'. After installation, you have to log out and log in again for changes to take effect. If you don't use bash, you might have to add the conda path to your .rc file
 
-```export PATH="<your miniconda directory>/miniconda3/bin:$PATH"
+```
+export PATH="<your miniconda directory>/miniconda3/bin:$PATH"
 ```
 
 This has to be only done once.
