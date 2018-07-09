@@ -89,7 +89,7 @@ I used ```source lxplus_env.sh```
   
   This step can take a while.
   
-  ## Training
+## Training
   
 the training is launched in the following way:
 ```
