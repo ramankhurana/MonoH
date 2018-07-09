@@ -105,7 +105,7 @@ data collection numpy arrays (LPC):
   
 the training is launched in the following way:
 ```
-python train_template.py /path/to/the/output/of/convert/dataCollection.dc <output dir of your choice>
+python deepDoubleB_reference.py /path/to/the/output/of/convert/dataCollection.dc <output dir of your choice>
 ```
 ## Evaluation
 
