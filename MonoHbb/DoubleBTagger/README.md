@@ -55,6 +55,18 @@ source lxplus_env.sh / gpu_env.sh
 ```
 I used ```source lxplus_env.sh```
 
+(Used the root files from the locations: 
+```our ntuples (LPC):
+/eos/uscms/store/group/lpchbb/20180401_ak8/
+
+mixed+merged ntuples (LPC)
+/eos/uscms/store/group/lpcjj/doubleb_merged_h_q_lessQCD/
+
+data collection numpy arrays (LPC):
+/eos/uscms/store/group/lpcjj/convert_20180401_ak8_deepDoubleB_db_cpf_sv_reduced_lessQCD_dl4jets_train_val
+/eos/uscms/store/group/lpcjj/convert_20180401_ak8_deepDoubleB_db_cpf_sv_reduced_lessQCD_dl4jets_test
+```
+
 ## The preparation for the training consists of the following steps
 
 - define the data structure for the training (example in modules/TrainData_template.py)
