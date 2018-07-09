@@ -9,7 +9,8 @@ It is essential to perform all these steps on lxplus7. Simple ssh to 'lxplus7' i
 
 Pre-Installtion: Anaconda setup (only once) Download miniconda3
 
-```mkdir condasetup
+```
+mkdir condasetup
 cd condasetup
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
