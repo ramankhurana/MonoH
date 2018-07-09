@@ -107,6 +107,8 @@ the training is launched in the following way:
 ```
 python deepDoubleB_reference.py /path/to/the/output/of/convert/dataCollection.dc <output dir of your choice>
 ```
+(Check this location to get datacollection.dc file: ```/eos/uscms/store/group/lpcjj/convert_20180401_ak8_deepDoubleB_db_cpf_sv_reduced_lessQCD_dl4jets_train_val```
+
 ## Evaluation
 
 After the training has finished, the performance can be evaluated.
