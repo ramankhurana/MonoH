@@ -1,5 +1,51 @@
- ###  BDT Training
- (will update soon)
+ ##  BDT Training
+ (All the ntuples can be found at this location: ```/dpm/indiacms.res.in/home/cms/store/user/dekumar/t3store2/2HDM_trainfile``` and ```/dpm/indiacms.res.in/home/cms/store/user/dekumar/t3store2/QCD_signan_train_v3```)
+ 
+ To do training please follow these steps:
+ ### pT dependent training
+#### Step1
+Run this command locally (lxplus) to get the training file:
+```
+python trainfilemaker.py /path/of/ntuple/file
+ ```
+(Edit the output file name inside the file ```trainfilemaker.py```)
+ 
+#### Step2
+To do training open the terminal and run the command:
+```
+jupyter notebook
+```
+ Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection.
+ 
+### pT independent training
+To do pT independent training follow these steps(Only for background):
+
+#### Step1
+Run this command locally (lxplus) to get the training file:
+```
+python trainfilemaker.py /path/of/ntuple/file
+ ```
+Edit the output file name inside the file ```trainfilemaker.py``` and use this outputfile as input for this command:
+
+```
+python pt_reweight.py inputfilename(which is output of step1)
+```
+After step1 we get new file ```pt_weight.root``` . This file we will use in the next step.
+#### Step2
+Run this command to get training file (In this file we can see one more branch ```weight``` this branch we will use in the training) :
+```
+python TrainfileMaker_pTreweight.py /path/of/ntupe/file
+```
+ Note: We need to provide same signal input file which we provided in step1.
+ 
+ #### Step3
+ 
+ To do training open the terminal and run the command:
+```
+jupyter notebook
+```
+ Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection.
+ 
  
   #  Deep Jet ( training and evaluation of deep neural networks for Jet identification)
   
