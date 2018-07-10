@@ -59,8 +59,6 @@ jupyter notebook
  cd MonoH/bbDM/bbMET/Train_Condor/
  . submitjobs.sh
  ```
- Before submitting the jobs, make new directory ```mkdir Filelists``` in side ```MonoH/bbDM/bbMET/Train_Condor/```
- and copy all the files here.
  Once jobs are done then do
  ```
  python HADD_multi_v2.py
