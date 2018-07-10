@@ -20,7 +20,7 @@ jupyter notebook
  Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection and replace ```bdt.fit(X_train, y_train,sample_weight=nw_train)``` with ```bdt.fit(X_train, y_train)``` and do not use branch```weight_branch=['weight']```
  
 ### pT independent training
-To do pT independent training follow these steps(Only for background):
+To do pT independent training follow these steps(Only for signal):
 
 #### Step1
 Run this command locally (lxplus) to get the training file:
