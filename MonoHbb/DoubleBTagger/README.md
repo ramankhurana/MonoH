@@ -10,6 +10,8 @@ python trainfilemaker.py /path/of/ntuple/file
  ```
 (Edit the output file name inside the file ```trainfilemaker.py```)
  
+ (For condor job submition please see the instructions below)
+ 
 #### Step2
 To do training open the terminal and run the command:
 ```
@@ -46,6 +48,27 @@ jupyter notebook
 ```
  Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection.
  
+ ### Condor job submition for QCD samples
+  
+ If you want to do training over all the QCD samples then its good to submit condor job to get the training files for all the QCD samples.
+ ```
+ ssh username@login.uscms.org
+ mkdir <workdir>
+ cd <workdir>
+ git clone https://github.com/deepakcern/MonoH.git
+ cd MonoH/bbDM/bbMET/Train_Condor/
+ . submitjobs.sh
+ ```
+ Before submitting the jobs, make new directory ```mkdir Filelists``` in side ```MonoH/bbDM/bbMET/Train_Condor/```
+ and copy all the files here.
+ Now set tree weight in all the QCD samples using the command:
+ ```
+ python Scale_tree.py
+ ```
+ Please provide the input and output dir path inside the file ```Scale_tree.py```
+ 
+ ### Training for all the QCD samples
+ (Not done yet)
  
   #  Deep Jet ( training and evaluation of deep neural networks for Jet identification)
   
