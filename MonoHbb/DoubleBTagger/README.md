@@ -17,7 +17,7 @@ To do training open the terminal and run the command:
 ```
 jupyter notebook
 ```
- Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection and replace ```bdt.fit(X_train, y_train,sample_weight=nw_train)``` with ```bdt.fit(X_train, y_train)```
+ Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection and replace ```bdt.fit(X_train, y_train,sample_weight=nw_train)``` with ```bdt.fit(X_train, y_train)``` and do not use branch```weight_branch=['weight']```
  
 ### pT independent training
 To do pT independent training follow these steps(Only for background):
@@ -46,7 +46,7 @@ python TrainfileMaker_pTreweight.py /path/of/ntupe/file
 ```
 jupyter notebook
 ```
- Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection.
+  Now run this file ```CA15DoubleBJetTagger.ipynb```. Before running change the inputfile name and selection and replace  ```bdt.fit(X_train, y_train)``` with ```bdt.fit(X_train, y_train,sample_weight=nw_train)```  and use branch```weight_branch=['weight']```. Please check correct branch name in the root file.
  
  ### Condor job submition for QCD samples
   
