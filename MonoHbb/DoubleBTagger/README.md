@@ -36,7 +36,7 @@ After step1 we get new file ```pt_weight.root``` . This file we will use in the 
 #### Step2
 Run this command to get training file (In this file we can see one more branch ```weight``` this branch we will use in the training) :
 ```
-python TrainfileMaker_pTreweight.py /path/of/ntupe/file
+python signal_TrainfileMaker_weight.py /path/of/ntupe/file
 ```
  Note: We need to provide same signal input file which we provided in step1.
  
