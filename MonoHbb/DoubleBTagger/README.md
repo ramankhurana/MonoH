@@ -61,7 +61,11 @@ jupyter notebook
  ```
  Before submitting the jobs, make new directory ```mkdir Filelists``` in side ```MonoH/bbDM/bbMET/Train_Condor/```
  and copy all the files here.
- Now set tree weight in all the QCD samples using the command:
+ Once jobs are done then do
+ ```
+ python HADD_multi_v2.py
+ ```
+ Now login into lxplus and set tree weight in all the QCD samples using the command:
  ```
  python Scale_tree.py
  ```
