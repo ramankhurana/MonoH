@@ -97,13 +97,15 @@ This has to be only done once.
 
  ## Installation:
  
- ```source /cvmfs/cms.cern.ch/cmsset_default.sh
+ ```
+ source /cvmfs/cms.cern.ch/cmsset_default.sh
 export SCRAM_ARCH=slc7_amd64_gcc700
 cmsrel CMSSW_10_1_7
 cd CMSSW_9_3_7/src
 ```
 
-```https://github.com/jmduarte/DeepJetCore.git 
+```
+https://github.com/jmduarte/DeepJetCore.git 
 https://github.com/jmduarte/DeepJet.git
 cd DeepJetCore/environment
 ./setupEnv.sh deepjetLinux3.conda
@@ -114,7 +116,8 @@ For enabling gpu support add 'gpu' as an additional option to the last command. 
 ## Compiling DeepJetCore
 When the installation was successful, the DeepJetCore tools need to be compiled.
 
-```cd DeepJetCore
+```
+cd DeepJetCore
 source lxplus_env.sh / gpu_env.sh
 cd compiled
 make -j4
@@ -123,13 +126,15 @@ make -j4
 ## Usage
 
 After logging in, please source the right environment (please cd to the directory first!):
-```cd <your working dir>/DeepJet
+```
+cd <your working dir>/DeepJet
 source lxplus_env.sh / gpu_env.sh
 ```
 I used ```source lxplus_env.sh```
 
 (Used the root files from the locations: 
-```our ntuples (LPC):
+```
+our ntuples (LPC):
 /eos/uscms/store/group/lpchbb/20180401_ak8/
 
 mixed+merged ntuples (LPC)
