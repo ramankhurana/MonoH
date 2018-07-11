@@ -8,8 +8,8 @@ import math
 import numpy as numpy_
 
 ROOT.gROOT.LoadMacro("Loader.h+")
-#outfilename= "bkg_QCD_Train.root"
-outfilename= "MZp-2000_MA0-300_train.root"
+outfilename= "bkg_QCD_Train.root"
+#outfilename= "signal_ZpBaryonic_MZp-1000_MChi-1_train.root"
 
 
 ntuple = TChain("tree/treeMaker")
@@ -27,6 +27,7 @@ def AnalyzeDataSet():
     SubJet_csv_min                = array( 'f', [ 0 ] )
     SubJet_csv_1                  = array( 'f', [ 0 ] )
     SubJet_csv_2                  = array( 'f', [ 0 ] )
+    fn_csv                        = array( 'f', [ 0 ] )
     trackSipdSig_3                = array( 'f', [ 0 ] )
     trackSipdSig_2                = array( 'f', [ 0 ] )
     trackSipdSig_1                = array( 'f', [ 0 ] )
@@ -70,6 +71,7 @@ def AnalyzeDataSet():
     outTree.Branch( 'SubJet_csv_min',SubJet_csv_min,'SubJet_csv_min/F')
     outTree.Branch( 'SubJet_csv_1',SubJet_csv_1,'SubJet_csv_1/F')
     outTree.Branch( 'SubJet_csv_2',SubJet_csv_2,'SubJet_csv_2/F')
+    outTree.Branch( 'fn_csv',fn_csv,'fn_csv/F')
     outTree.Branch( 'trackSipdSig_3',trackSipdSig_3,'trackSipdSig_3/F')
     outTree.Branch( 'trackSipdSig_2',trackSipdSig_2,'trackSipdSig_2/F')
     outTree.Branch( 'trackSipdSig_1',trackSipdSig_1,'trackSipdSig_1/F')
@@ -191,72 +193,82 @@ def AnalyzeDataSet():
 
         if len(CA15Puppi_ptPruned) > 0 & (170 < CA15Puppi_ptPruned < 3000) & (50 < CA15Puppi_massPruned < 200) :
             Subjets_0 = CA15PuppisubjetCSV[0]
-            if len(Subjets_0)==2:
-                print "subjets", len(Subjets_0)
-                z_ratio[0]                = CA15Puppi_z_ratio[0]
-                SubJet_csv_min[0]         = CA15Puppi_SubJet_csv[0]
-                SubJet_csv_1[0]           = Subjets_0[0]
-                SubJet_csv_2[0]           = Subjets_0[1]
-                trackSipdSig_3[0]         = CA15Puppi_trackSipdSig_3[0]
-                trackSipdSig_2[0]         = CA15Puppi_trackSipdSig_2[0]
-                trackSipdSig_1[0]         = CA15Puppi_trackSipdSig_1[0]
-                trackSipdSig_0[0]         = CA15Puppi_trackSipdSig_0[0]
-                trackSipdSig_1_0[0]       = CA15Puppi_trackSipdSig_1_0[0]
-                trackSipdSig_0_0[0]       = CA15Puppi_trackSipdSig_0_0[0]
-                trackSipdSig_1_1[0]       = CA15Puppi_trackSipdSig_1_1[0]
-                trackSipdSig_0_1[0]       = CA15Puppi_trackSipdSig_0_1[0]
-                trackSip2dSigAboveCharm_0[0]  = CA15Puppi_trackSip2dSigAboveCharm_0[0]
-                trackSip2dSigAboveBottom_0[0] = CA15Puppi_trackSip2dSigAboveBottom_0[0]
-                trackSip2dSigAboveBottom_1[0] = CA15Puppi_trackSip2dSigAboveBottom_1[0]
-                tau1_trackEtaRel_0[0]         = CA15Puppi_tau1_trackEtaRel_0[0]
-                tau1_trackEtaRel_1[0]         = CA15Puppi_tau1_trackEtaRel_1[0]
-                tau1_trackEtaRel_2[0]         = CA15Puppi_tau1_trackEtaRel_2[0]
-                tau0_trackEtaRel_0[0]         = CA15Puppi_tau0_trackEtaRel_0[0]
-                tau0_trackEtaRel_1[0]         = CA15Puppi_tau0_trackEtaRel_1[0]
-                tau0_trackEtaRel_2[0]         = CA15Puppi_tau0_trackEtaRel_2[0]
-                tau_vertexMass_0[0]           = CA15Puppi_tau_vertexMass_0[0]
-                tau_vertexEnergyRatio_0[0]    = CA15Puppi_tau_vertexEnergyRatio_0[0]
-                tau_vertexDeltaR_0[0]         = CA15Puppi_tau_vertexDeltaR_0[0]
-                tau_flightDistance2dSig_0[0]  = CA15Puppi_tau_flightDistance2dSig_0[0]
-                tau_vertexMass_1[0]           = CA15Puppi_tau_vertexMass_1[0]
-                tau_vertexEnergyRatio_1[0]    = CA15Puppi_tau_vertexEnergyRatio_1[0]
-                tau_flightDistance2dSig_1[0]  = CA15Puppi_tau_flightDistance2dSig_1[0]
-                jetNTracks[0]                 = CA15Puppi_jetNTracks[0]
-                nSV[0]                        = CA15Puppi_nSV_[0]
-                massPruned[0]                 = CA15Puppi_massPruned[0]
-                flavour[0]                    = CA15Puppi_flavour[0]
-                nbHadrons[0]                  = CA15Puppi_nbHadrons[0]
-                ptPruned[0]                   = CA15Puppi_ptPruned[0]
-                etaPruned[0]                  = CA15Puppi_etaPruned[0]
+            try:
 
-                myEles=[]
-                for iele in range(nElectron):
-                    if (eleP4[iele].Pt() > 10. ) & (abs(eleP4[iele].Eta()) <2.5) & (bool(eleIsPassLoose[iele]) == True) :
-                        myEles.append(iele)
-                # print len(myEles)
-                myMuos = []
-                for imu in range(nMu_):
-                    if (muP4[imu].Pt()>10.) & (abs(muP4[imu].Eta()) < 2.4) & (bool(isLooseMuon[imu]) == True):
-                        relPFIso = (muChHadIso[imu]+ max(0., muNeHadIso[imu] + muGamIso[imu] - 0.5*muPUPt[imu]))/muP4[imu].Pt()
-                        if relPFIso<0.25 :
-                            myMuos.append(imu)
-                #print len(myMuos)
-                myTaus =[]
-                for itau in range(nTau_):
-                    if (tauP4[itau].Pt()>18.) & (abs(tauP4[itau].Eta())<2.3) & (bool(isDecayModeFinding[itau]) == True) & (bool(passLooseTauIso[itau]) == True):
-                        myTaus.append(itau)
+                if len(Subjets_0)==2:# & (Subjets_0[0] > 0) & (Subjets_0[1] > 0):
+                    print "subjets", len(Subjets_0)
+                    print ("csv: ",Subjets_0[0],"and",Subjets_0[1])
+                    new_csv=math.tanh(math.atanh(Subjets_0[0])+math.atanh(Subjets_0[1]))
+                    print ("new csv: ",new_csv)
 
-                #print len(myTaus)
-                myPhos=[]
-                for ipho in range(nPho_):
-                    if (phoP4[ipho].Pt() > 15.) & (abs(phoP4[ipho].Eta()) <2.5) & (bool(phoIsPassLoose[ipho]) == True):
-                        myPhos.append(ipho)
-                # print len(myPhos)
-                #other variables
-                nEle[0] = len(myEles)
-                nMu[0]  = len(myMuos)
-                nTau[0] = len(myTaus)
-                nPho[0] =  len(myPhos)
+                    z_ratio[0]                = CA15Puppi_z_ratio[0]
+                    SubJet_csv_min[0]         = CA15Puppi_SubJet_csv[0]
+                    SubJet_csv_1[0]           = Subjets_0[0]
+                    SubJet_csv_2[0]           = Subjets_0[1]
+                    fn_csv[0]                 = new_csv
+                    trackSipdSig_3[0]         = CA15Puppi_trackSipdSig_3[0]
+                    trackSipdSig_2[0]         = CA15Puppi_trackSipdSig_2[0]
+                    trackSipdSig_1[0]         = CA15Puppi_trackSipdSig_1[0]
+                    trackSipdSig_0[0]         = CA15Puppi_trackSipdSig_0[0]
+                    trackSipdSig_1_0[0]       = CA15Puppi_trackSipdSig_1_0[0]
+                    trackSipdSig_0_0[0]       = CA15Puppi_trackSipdSig_0_0[0]
+                    trackSipdSig_1_1[0]       = CA15Puppi_trackSipdSig_1_1[0]
+                    trackSipdSig_0_1[0]       = CA15Puppi_trackSipdSig_0_1[0]
+                    trackSip2dSigAboveCharm_0[0]  = CA15Puppi_trackSip2dSigAboveCharm_0[0]
+                    trackSip2dSigAboveBottom_0[0] = CA15Puppi_trackSip2dSigAboveBottom_0[0]
+                    trackSip2dSigAboveBottom_1[0] = CA15Puppi_trackSip2dSigAboveBottom_1[0]
+                    tau1_trackEtaRel_0[0]         = CA15Puppi_tau1_trackEtaRel_0[0]
+                    tau1_trackEtaRel_1[0]         = CA15Puppi_tau1_trackEtaRel_1[0]
+                    tau1_trackEtaRel_2[0]         = CA15Puppi_tau1_trackEtaRel_2[0]
+                    tau0_trackEtaRel_0[0]         = CA15Puppi_tau0_trackEtaRel_0[0]
+                    tau0_trackEtaRel_1[0]         = CA15Puppi_tau0_trackEtaRel_1[0]
+                    tau0_trackEtaRel_2[0]         = CA15Puppi_tau0_trackEtaRel_2[0]
+                    tau_vertexMass_0[0]           = CA15Puppi_tau_vertexMass_0[0]
+                    tau_vertexEnergyRatio_0[0]    = CA15Puppi_tau_vertexEnergyRatio_0[0]
+                    tau_vertexDeltaR_0[0]         = CA15Puppi_tau_vertexDeltaR_0[0]
+                    tau_flightDistance2dSig_0[0]  = CA15Puppi_tau_flightDistance2dSig_0[0]
+                    tau_vertexMass_1[0]           = CA15Puppi_tau_vertexMass_1[0]
+                    tau_vertexEnergyRatio_1[0]    = CA15Puppi_tau_vertexEnergyRatio_1[0]
+                    tau_flightDistance2dSig_1[0]  = CA15Puppi_tau_flightDistance2dSig_1[0]
+                    jetNTracks[0]                 = CA15Puppi_jetNTracks[0]
+                    nSV[0]                        = CA15Puppi_nSV_[0]
+                    massPruned[0]                 = CA15Puppi_massPruned[0]
+                    flavour[0]                    = CA15Puppi_flavour[0]
+                    nbHadrons[0]                  = CA15Puppi_nbHadrons[0]
+                    ptPruned[0]                   = CA15Puppi_ptPruned[0]
+                    etaPruned[0]                  = CA15Puppi_etaPruned[0]
+
+                    myEles=[]
+                    for iele in range(nElectron):
+                        if (eleP4[iele].Pt() > 10. ) & (abs(eleP4[iele].Eta()) <2.5) & (bool(eleIsPassLoose[iele]) == True) :
+                            myEles.append(iele)
+                    # print len(myEles)
+                    myMuos = []
+                    for imu in range(nMu_):
+                        if (muP4[imu].Pt()>10.) & (abs(muP4[imu].Eta()) < 2.4) & (bool(isLooseMuon[imu]) == True):
+                            relPFIso = (muChHadIso[imu]+ max(0., muNeHadIso[imu] + muGamIso[imu] - 0.5*muPUPt[imu]))/muP4[imu].Pt()
+                            if relPFIso<0.25 :
+                                myMuos.append(imu)
+                    #print len(myMuos)
+                    myTaus =[]
+                    for itau in range(nTau_):
+                        if (tauP4[itau].Pt()>18.) & (abs(tauP4[itau].Eta())<2.3) & (bool(isDecayModeFinding[itau]) == True) & (bool(passLooseTauIso[itau]) == True):
+                            myTaus.append(itau)
+
+                    #print len(myTaus)
+                    myPhos=[]
+                    for ipho in range(nPho_):
+                        if (phoP4[ipho].Pt() > 15.) & (abs(phoP4[ipho].Eta()) <2.5) & (bool(phoIsPassLoose[ipho]) == True):
+                            myPhos.append(ipho)
+                    # print len(myPhos)
+                    #other variables
+                    nEle[0] = len(myEles)
+                    nMu[0]  = len(myMuos)
+                    nTau[0] = len(myTaus)
+                    nPho[0] =  len(myPhos)
+
+            except:
+                print "There is problem in csv value , skipping event"
 
 
         outTree.Fill()
